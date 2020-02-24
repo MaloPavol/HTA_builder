@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1; ie=10" http-equiv="x-ua-compatible">
+            <title>MyAppTitle</title>
+            <HTA:APPLICATION ID="" BORDER="thin" INNERBORDER="no" SCROLL="no" CAPTION="yes" SCROLLFLAT="no" SHOWINTASKBAR="yes" SINGLEINSTANCE="yes" SYSMENU="yes" NAVIGABLE="yes" WINDOWSTATE="normal"/>
+        </meta>
+        <script language="javascript" type="text/javascript">
+            /*---+++---PLACEHOLDER start JAVASCRIPT---+++---*/
+
+                /*___contents of appLogic.js will be 
+                _____copied here during the build____*/
+
+           /*---+++---JAVASCRIPT---+++---*/
+//on load
+function getMonitorWidth(){
+    return screen.width
+}
+
+function getMonitorHeight(){
+    return screen.height
+}
+
+function loadApplication(){
+    resizeAppWindow(515, 345, 0, 0);
+
+   
+}
+
+/*---+++---PLACEHOLDER end JAVASCRIPT---+++---*/
+        </script>
+        <script language="VBScript" type="text/vbscript">
+            '*---+++---PLACEHOLDER start VBSCRIPT---+++---*
+
+                '*___contents of appLogic.vbs will be 
+                '____copied here during the build____
+
+           '*---+++---VBSCRIPT---+++---*
+'on load
+sub resizeAppWindow(height, width, xPoint, yPoint)
+    window.resizeTo width, height
+    window.moveTo xPoint, yPoint
+end sub
+
+'on browser start
+sub resizeWebBrowser(WebBrowser, height, width, xPoint, yPoint)
+    WebBrowser.Visible = 1
+    WebBrowser.width = width
+    WebBrowser.height = height
+    WebBrowser.left = xPoint
+    WebBrowser.top = yPoint
+end sub
+
+'when the submit button is clicked
+sub fillInOnlineForm()
+    Dim WebBrowser: Set WebBrowser = CreateObject("InternetExplorer.Application")
+    call resizeWebBrowser(WebBrowser, getMonitorHeight()-35, getMonitorWidth()-350, 350, 0)
+    call goToForm(WebBrowser)
+    Do While WebBrowser.Busy
+        'wait                                        
+    loop
+    call fillInForm(WebBrowser)
+    Do While WebBrowser.Busy
+        'wait
+    loop
+end sub
+
+sub goToForm(WebBrowser)
+    WebBrowser.navigate "https://www.w3schools.com/html/html_forms.asp"
+end sub
+
+Sub fillInForm(WebBrowser)
+    Dim firstName: firstName = document.getelementbyid("first_name").value
+    dim lastName: lastName = document.getelementbyid("last_name").value
+    WebBrowser.Document.getelementbyid("fname").value = firstName
+    WebBrowser.Document.getelementbyid("lname").value = lastName
+    dim inputElements: set inputElements = WebBrowser.Document.getelementsByTagName("input")
+    for each elem in inputElements
+        if elem.value = "Submit" then
+            elem.click
+            exit for
+        end if
+    next
+End Sub'*---+++---PLACEHOLDER end VBSCRIPT---+++---*
+        </script>
+        <style>
+            /*---+++---PLACEHOLDER start CSS-FORMATING---+++---*/
+
+                /*___contents of GUI_style.css will be 
+                _____copied here during the build____*/
+
+           html{
+    font-family: Arial;
+    font-size: 12px;
+    color:rgb(0, 0, 0);
+    display: block;
+    width: 315px;
+}
+input{
+    border:1px;
+    background-color: #cacbff;
+    width: 300px;
+}
+
+/*text formatting*/
+.heading1{
+    text-decoration: underline;
+    font-size: 16px;
+    padding-bottom: 10px;
+    padding-top: 15px;
+    font-weight: bold;
+    margin: 0px;
+}
+.heading2{
+    font-size: 14px;
+    padding-bottom: 0px;
+    padding-top: 0px;
+    font-weight: bold;
+    margin: 0px;
+}
+.text{
+    padding-bottom: 10px;
+    padding-top: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+/*buttons and forms formatting*/
+.button{
+    background-color:rgb(1, 79, 143);
+    border: none;
+    color: white;
+    width: 100px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+.button:hover{
+    background-color:rgb(0, 59, 107);
+    font-weight: bold;
+}/*---+++---PLACEHOLDER end CSS-FORMATING---+++---*/
+        </style>
+
+       
+
+    </head>
+
+    <!--******HTML GRAPHICAL USER INTERFACE******-->
+    <body onload="loadApplication()">
+        
+        <div id="topHeading">
+            <p class="heading1">Test Online Form on W3School</p>
+            <p class="text">After submitting the App loads W3School.com and fills in this form:</p>
+            <img src="../DevFiles/myPicture.png" style="width:300px">
+        </div>
+
+        <div id="divLogForm">
+            <form>
+                <p class="heading2">Fist name:</p>
+                <input type="text" id="first_name" value="eg John"><br>
+                <p class="heading2">Last name (secret):</p>
+                <input type="text" id="last_name" value="eg Doe">
+            </form>
+        </div>
+        <div>
+            <button type="button" class="button" id="btnFillInForm" onclick="fillInOnlineForm()">Fill in form</button>
+        </div>
+    </body>
+</html>
