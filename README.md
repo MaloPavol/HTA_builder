@@ -2,7 +2,7 @@
 This application automates the assembly of an HTML-Application into a single file: 
 
 
-<img src="Images/HTA-builder.png" width="250">
+<img src="Images/HTA-builder.png" width="350">
 
 This App was produced as a side product during my master degree studies of Software Design and Engineering at [University of Applied Sciences FH Campus Wien](https://www.fh-campuswien.ac.at/en/studies/study-courses/detail/software-design-and-engineering-master.html).
 
@@ -16,7 +16,7 @@ The "MyApp.hta" in "Build"-directory is built with every initiation of the "buil
 
 Additionally, this app includes a small demo of taking user input and filling online forms:  
 
-<img src="Images/HTML-demo.png" width="650">
+<img src="Images/HTML-demo.png" width="850">
 
 Note: Error handling is not included. You may need to enable pop-ups and/or accept cookies for W3School.com in Internet Explorer manually before the application can run as intended. 
 
