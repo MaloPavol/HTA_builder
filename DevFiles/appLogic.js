@@ -33,30 +33,27 @@ function loadApplication(){
         excludeStart_HTML = "<!---+++---EXCLUDED PART" + " start " + "EXCLUDED PART---+++--->";
         excludeEnd_HTML = "<!---+++---EXCLUDED PART" + " end " + "EXCLUDED PART---+++--->"
 
-        //try building a single file HTML-Application
-        //try{
-            //get the HTML code
-            htmlGUI = getCodeAsText(htmlFile)
-            //add embeded Javascript code
-            jsCode = getCodeAsText(jsFile);
-            htmlGUI_JS = insertStringAt(placeHolderEnd_JS, htmlGUI, jsCode);
-            //add embeded VBScript code
-            vbsCode = getCodeAsText(vbsFile);
-            htmlGUI_JS_VBS = insertStringAt(placeHolderEnd_VBS, htmlGUI_JS, vbsCode);
-            //add embeded CSS code
-            cssCode = getCodeAsText(cssFile);
-            htmlGUI_JS_VBS_CSS = insertStringAt(placeHolderEnd_CSS, htmlGUI_JS_VBS, cssCode);
-            //add exclude code marked to be omitted
-            htmlGUI_JS_VBS_CSS_excluded_JS_parts = deleteExcludedParts(htmlGUI_JS_VBS_CSS, excludeStart_JS, excludeEnd_JS)
-            htmlGUI_JS_VBS_CSS_excluded_JS_HTML_parts = deleteExcludedParts(htmlGUI_JS_VBS_CSS_excluded_JS_parts, excludeStart_HTML, excludeEnd_HTML)
-            //adjust any remaining references to external files
-            htmlGUI_JS_VBS_CSS_excluded_JS_HTML_parts = htmlGUI_JS_VBS_CSS_excluded_JS_HTML_parts.replace("src=\"myPicture.png\"","src=\"../DevFiles/myPicture.png\"")
-            //save the single file HTML-Application
-            saveFile(buildDirectory+buildFile, htmlGUI_JS_VBS_CSS_excluded_JS_HTML_parts)
+        //build HTA-file!
 
-        //} catch(e){
-        //    alert("Error while building HTA-file: "+ e)
-        //}
+        //get the HTML code
+        htmlGUI = getCodeAsText(htmlFile)
+        //add embeded Javascript code
+        jsCode = getCodeAsText(jsFile);
+        htmlGUI_JS = insertStringAt(placeHolderEnd_JS, htmlGUI, jsCode);
+        //add embeded VBScript code
+        vbsCode = getCodeAsText(vbsFile);
+        htmlGUI_JS_VBS = insertStringAt(placeHolderEnd_VBS, htmlGUI_JS, vbsCode);
+        //add embeded CSS code
+        cssCode = getCodeAsText(cssFile);
+        htmlGUI_JS_VBS_CSS = insertStringAt(placeHolderEnd_CSS, htmlGUI_JS_VBS, cssCode);
+        //add exclude code marked to be omitted
+        htmlGUI_JS_VBS_CSS_excluded_JS_parts = deleteExcludedParts(htmlGUI_JS_VBS_CSS, excludeStart_JS, excludeEnd_JS)
+        htmlGUI_JS_VBS_CSS_excluded_JS_HTML_parts = deleteExcludedParts(htmlGUI_JS_VBS_CSS_excluded_JS_parts, excludeStart_HTML, excludeEnd_HTML)
+        //adjust any remaining references to external files
+        //example: htmlGUI_JS_VBS_CSS_excluded_JS_HTML_parts = htmlGUI_JS_VBS_CSS_excluded_JS_HTML_parts.replace("src=\"myPicture.png\"","src=\"../DevFiles/myPicture.png\"")
+            
+        //save the single file HTML-Application
+        saveFile(buildDirectory+buildFile, htmlGUI_JS_VBS_CSS_excluded_JS_HTML_parts)
 
         function getCodeAsText(filePath){
             var fso = new ActiveXObject("Scripting.FileSystemObject");
