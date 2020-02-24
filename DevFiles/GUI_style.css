@@ -1,0 +1,49 @@
+html{
+    font-family: Arial;
+    font-size: 12px;
+    color:rgb(0, 0, 0);
+    display: block;
+    width: 315px;
+}
+input{
+    border:1px;
+    background-color: #cacbff;
+    width: 300px;
+}
+
+/*text formatting*/
+.heading1{
+    text-decoration: underline;
+    font-size: 16px;
+    padding-bottom: 10px;
+    padding-top: 15px;
+    font-weight: bold;
+    margin: 0px;
+}
+.heading2{
+    font-size: 14px;
+    padding-bottom: 0px;
+    padding-top: 0px;
+    font-weight: bold;
+    margin: 0px;
+}
+.text{
+    padding-bottom: 10px;
+    padding-top: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+/*buttons and forms formatting*/
+.button{
+    background-color:rgb(1, 79, 143);
+    border: none;
+    color: white;
+    width: 100px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+.button:hover{
+    background-color:rgb(0, 59, 107);
+    font-weight: bold;
+}
